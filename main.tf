@@ -63,6 +63,7 @@ resource "aws_lambda_permission" "default" {
   source_arn = "arn:aws:execute-api:${var.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.default.id}/*/*"
 }
 
+# https://github.com/terraform-providers/terraform-provider-aws/issues/2195
 module "domain" {
   source = "domain"
 
