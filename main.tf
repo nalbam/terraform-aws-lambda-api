@@ -9,6 +9,8 @@ module "lambda" {
   description = "${var.description}"
   runtime = "${var.runtime}"
   handler = "${var.handler}"
+  memory_size = "${var.memory_size}"
+  timeout = "${var.timeout}"
   s3_bucket = "${var.s3_bucket}"
   s3_key = "${var.s3_key}"
   env_vars = "${var.env_vars}"
@@ -64,10 +66,18 @@ resource "aws_lambda_permission" "default" {
 }
 
 # https://github.com/terraform-providers/terraform-provider-aws/issues/2195
-module "domain" {
-  source = "domain"
+module "cloudfront" {
+  source = "cloudfront"
 
-  zone_id = "${var.zone_id}"
   domain_name = "${var.domain_name}"
   certificate_arn = "${var.certificate_arn}"
+}
+
+module "domain" {
+  source = "git::https://gitlab.com/nalbam/terraform-aws-route53-alias.git"
+
+  zone_id = "${var.zone_id}"
+  name = "${var.domain_name}"
+  alias_name = "${module.cloudfront.cloudfront_domain_name}"
+  alias_zone_id = "${module.cloudfront.cloudfront_zone_id}"
 }
