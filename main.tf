@@ -52,6 +52,8 @@ resource "aws_api_gateway_deployment" "default" {
 }
 
 resource "aws_api_gateway_domain_name" "default" {
+  provider = "aws.default"
+
   domain_name = "${var.domain_name}"
 
   certificate_arn = "${var.certificate_arn}"
