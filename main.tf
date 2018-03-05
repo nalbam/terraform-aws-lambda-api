@@ -51,14 +51,6 @@ resource "aws_api_gateway_deployment" "default" {
   ]
 }
 
-resource "aws_api_gateway_domain_name" "default" {
-  provider = "aws.default"
-
-  domain_name = "${var.domain_name}"
-
-  certificate_arn = "${var.certificate_arn}"
-}
-
 resource "aws_lambda_permission" "default" {
   action = "lambda:InvokeFunction"
   function_name = "${module.lambda.lambda_function_arn}"
@@ -72,10 +64,9 @@ resource "aws_lambda_permission" "default" {
 }
 
 module "domain" {
-  source = "git::https://gitlab.com/nalbam/terraform-aws-route53-alias.git"
+  source = "domain"
 
   zone_id = "${var.zone_id}"
-  name = "${var.domain_name}"
-  alias_name = "${aws_api_gateway_domain_name.default.cloudfront_domain_name}"
-  alias_zone_id = "${aws_api_gateway_domain_name.default.cloudfront_zone_id}"
+  domain_name = "${var.domain_name}"
+  certificate_arn = "${var.certificate_arn}"
 }
