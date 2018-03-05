@@ -66,9 +66,14 @@ resource "aws_lambda_permission" "default" {
 }
 
 # https://github.com/terraform-providers/terraform-provider-aws/issues/2195
-module "cloudfront" {
-  source = "cloudfront"
+//module "cloudfront" {
+//  source = "cloudfront"
+//
+//  domain_name = "${var.domain_name}"
+//  certificate_arn = "${var.certificate_arn}"
+//}
 
+resource "aws_api_gateway_domain_name" "default" {
   domain_name = "${var.domain_name}"
   certificate_arn = "${var.certificate_arn}"
 }
@@ -78,6 +83,6 @@ module "domain" {
 
   zone_id = "${var.zone_id}"
   name = "${var.domain_name}"
-  alias_name = "${module.cloudfront.cloudfront_domain_name}"
-  alias_zone_id = "${module.cloudfront.cloudfront_zone_id}"
+  alias_name = "${aws_api_gateway_domain_name.default.cloudfront_domain_name}"
+  alias_zone_id = "${aws_api_gateway_domain_name.default.cloudfront_zone_id}"
 }
