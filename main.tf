@@ -9,8 +9,8 @@ module "lambda" {
   description = "${var.description}"
   runtime = "${var.runtime}"
   handler = "${var.handler}"
-  bucket = "${var.bucket}"
-  package = "${var.package}"
+  s3_bucket = "${var.s3_bucket}"
+  s3_key = "${var.s3_key}"
   env_vars = "${var.env_vars}"
 }
 
