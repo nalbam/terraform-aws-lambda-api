@@ -69,6 +69,7 @@ resource "aws_lambda_permission" "default" {
 module "domain" {
   source = "domain"
 
+  zone_id = "${var.zone_id}"
   domain_name = "${var.domain_name}"
   certificate_arn = "${var.certificate_arn}"
 }
