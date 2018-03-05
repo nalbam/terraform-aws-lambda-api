@@ -66,12 +66,12 @@ resource "aws_lambda_permission" "default" {
 }
 
 # https://github.com/terraform-providers/terraform-provider-aws/issues/2195
-//module "cloudfront" {
-//  source = "cloudfront"
-//
-//  domain_name = "${var.domain_name}"
-//  certificate_arn = "${var.certificate_arn}"
-//}
+module "domain" {
+  source = "domain"
+
+  domain_name = "${var.domain_name}"
+  certificate_arn = "${var.certificate_arn}"
+}
 
 resource "aws_api_gateway_domain_name" "default" {
   domain_name = "${var.domain_name}"
