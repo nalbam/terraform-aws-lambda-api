@@ -11,7 +11,7 @@ module "lambda" {
   handler = "${var.handler}"
   bucket = "${var.bucket}"
   package = "${var.package}"
-  variables = "${var.env_vars}"
+  env_vars = "${var.env_vars}"
 }
 
 resource "aws_api_gateway_rest_api" "default" {

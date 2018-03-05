@@ -56,13 +56,13 @@ variable "env_vars" {
 }
 
 variable zone_id {
-  default = ""
+  //default = ""
 }
 
 variable domain_name {
-  default = ""
+  //default = ""
 }
 
 variable certificate_arn {
-  default = ""
+  //default = ""
 }
