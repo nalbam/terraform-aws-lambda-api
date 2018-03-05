@@ -66,24 +66,31 @@ resource "aws_lambda_permission" "default" {
 }
 
 # https://github.com/terraform-providers/terraform-provider-aws/issues/2195
-module "domain" {
-  source = "domain"
-
-  zone_id = "${var.zone_id}"
-  domain_name = "${var.domain_name}"
-  certificate_arn = "${var.certificate_arn}"
-}
-
-//resource "aws_api_gateway_domain_name" "default" {
+//module "domain" {
+//  source = "domain"
+//
+//  zone_id = "${var.zone_id}"
 //  domain_name = "${var.domain_name}"
 //  certificate_arn = "${var.certificate_arn}"
 //}
 
-//module "domain" {
-//  source = "git::https://gitlab.com/nalbam/terraform-aws-route53-alias.git"
-//
-//  zone_id = "${var.zone_id}"
-//  name = "${var.domain_name}"
-//  alias_name = "${aws_api_gateway_domain_name.default.cloudfront_domain_name}"
-//  alias_zone_id = "${aws_api_gateway_domain_name.default.cloudfront_zone_id}"
-//}
+data "aws_acm_certificate" "default" {
+  domain = "nalbam.com"
+  statuses = [
+    "ISSUED"
+  ]
+}
+
+resource "aws_api_gateway_domain_name" "default" {
+  domain_name = "${var.domain_name}"
+  certificate_arn = "${data.aws_acm_certificate.default.arn}"
+}
+
+module "domain" {
+  source = "git::https://gitlab.com/nalbam/terraform-aws-route53-alias.git"
+
+  zone_id = "${var.zone_id}"
+  name = "${var.domain_name}"
+  alias_name = "${aws_api_gateway_domain_name.default.cloudfront_domain_name}"
+  alias_zone_id = "${aws_api_gateway_domain_name.default.cloudfront_zone_id}"
+}
