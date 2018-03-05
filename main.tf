@@ -71,6 +71,12 @@ resource "aws_api_gateway_domain_name" "default" {
   certificate_arn = "${var.certificate_arn}"
 }
 
+resource "aws_api_gateway_base_path_mapping" "test" {
+  api_id = "${aws_api_gateway_rest_api.default.id}"
+  stage_name = "${aws_api_gateway_deployment.default.stage_name}"
+  domain_name = "${aws_api_gateway_domain_name.default.domain_name}"
+}
+
 module "domain" {
   source = "git::https://gitlab.com/nalbam/terraform-aws-route53-alias.git"
 
