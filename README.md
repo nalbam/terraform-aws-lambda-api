@@ -12,6 +12,8 @@ module "lambda-api" {
   handler = "index.handler"
   memory_size = 512
   timeout = 5
+  http_method = "GET"
+  path_part = "demo"
   bucket = "bucket_name"
   package = "data/demo.zip"
 }

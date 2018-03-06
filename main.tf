@@ -23,13 +23,13 @@ resource "aws_api_gateway_rest_api" "default" {
 resource "aws_api_gateway_resource" "default" {
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
   parent_id = "${aws_api_gateway_rest_api.default.root_resource_id}"
-  path_part = "${var.name}"
+  path_part = "${var.path_part == "" ? var.name : var.path_part}"
 }
 
 resource "aws_api_gateway_method" "default" {
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
   resource_id = "${aws_api_gateway_resource.default.id}"
-  http_method = "GET"
+  http_method = "${var.http_method}"
   authorization = "NONE"
 }
 
