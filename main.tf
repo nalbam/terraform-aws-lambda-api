@@ -38,7 +38,7 @@ resource "aws_api_gateway_integration" "default" {
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
   resource_id = "${aws_api_gateway_resource.default.id}"
   http_method = "${aws_api_gateway_method.default.http_method}"
-  uri = "${module.lambda.lambda_function_invoke_arn}"
+  uri = "${module.lambda.invoke_arn}"
 
   # AWS lambdas can only be invoked with the POST method
   integration_http_method = "POST"
@@ -55,7 +55,7 @@ resource "aws_api_gateway_deployment" "default" {
 
 resource "aws_lambda_permission" "default" {
   action = "lambda:InvokeFunction"
-  function_name = "${module.lambda.lambda_function_arn}"
+  function_name = "${module.lambda.arn}"
   principal = "apigateway.amazonaws.com"
   statement_id = "AllowExecutionFromAPIGateway"
 
