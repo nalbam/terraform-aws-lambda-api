@@ -1,7 +1,7 @@
 # Lambda Function : api gateway > lambda
 
 module "lambda" {
-  source = "git::https://gitlab.com/nalbam/terraform-aws-lambda.git"
+  source = "git::https://github.com/nalbam/terraform-aws-lambda.git"
   region = "${var.region}"
 
   name = "${var.name}"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_base_path_mapping" "default" {
 }
 
 module "domain" {
-  source = "git::https://gitlab.com/nalbam/terraform-aws-route53-alias.git"
+  source = "git::https://github.com/nalbam/terraform-aws-route53-alias.git"
 
   zone_id = "${var.zone_id}"
   name = "${var.domain_name}"

@@ -3,7 +3,7 @@
 ## usage
 ```
 module "lambda-api" {
-  source = "git::https://gitlab.com/nalbam/terraform-aws-lambda-api.git"
+  source = "git::https://github.com/nalbam/terraform-aws-lambda-api.git"
   region = "ap-northeast-2"
 
   name = "demo"
