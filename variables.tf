@@ -39,16 +39,6 @@ variable "timeout" {
   description = "The amount of time your Lambda Function has to run in seconds."
 }
 
-variable "http_method" {
-  default = "GET"
-  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
-}
-
-variable "path_part" {
-  default = ""
-  description = "The last path segment of this API resource."
-}
-
 variable "s3_bucket" {
   //default = ""
   description = "The S3 bucket location containing the function's deployment package."
@@ -63,6 +53,16 @@ variable "env_vars" {
   type = "map"
   //default = {}
   description = "A map that defines environment variables for the Lambda function."
+}
+
+variable "http_method" {
+  default = "GET"
+  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
+}
+
+variable "path_part" {
+  default = ""
+  description = "The last path segment of this API resource."
 }
 
 variable zone_id {
