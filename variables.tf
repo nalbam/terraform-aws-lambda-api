@@ -67,6 +67,17 @@ variable "http_method" {
   description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
 }
 
+variable "http_methods" {
+  type = "list"
+  default = [
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE"
+  ]
+  description = "The HTTP Methods (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
+}
+
 variable zone_id {
   //default = ""
 }
