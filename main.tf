@@ -52,7 +52,7 @@ resource "aws_api_gateway_integration" "default" {
   integration_http_method = "POST"
 
   depends_on = [
-    "aws_api_gateway_resource.default"
+    "aws_api_gateway_method.default"
   ]
 }
 

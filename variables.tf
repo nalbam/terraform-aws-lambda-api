@@ -62,11 +62,6 @@ variable "path_part" {
   description = "The last path segment of this API resource."
 }
 
-variable "http_method" {
-  default = "ANY"
-  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
-}
-
 variable "http_methods" {
   type = "list"
   default = [
