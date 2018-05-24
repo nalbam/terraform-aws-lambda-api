@@ -27,9 +27,11 @@ resource "aws_api_gateway_resource" "default" {
 }
 
 resource "aws_api_gateway_method" "default" {
+  count = "${length(var.http_methods)}"
+
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
   resource_id = "${aws_api_gateway_resource.default.id}"
-  http_method = "${var.http_method}"
+  http_method = "${element(var.http_methods, count.index)}"
   authorization = "NONE"
 
   depends_on = [
