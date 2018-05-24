@@ -28,7 +28,7 @@ resource "aws_api_gateway_resource" "default" {
 
 resource "aws_api_gateway_method" "default" {
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
-  resource_id = "${element(aws_api_gateway_resource.default.*.id, count.index)}"
+  resource_id = "${aws_api_gateway_resource.default.id}"
   http_method = "${var.http_method}"
   authorization = "NONE"
 
@@ -40,7 +40,7 @@ resource "aws_api_gateway_method" "default" {
 resource "aws_api_gateway_integration" "default" {
   type = "AWS_PROXY"
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
-  resource_id = "${element(aws_api_gateway_resource.default.*.id, count.index)}"
+  resource_id = "${aws_api_gateway_resource.default.id}"
   http_method = "${var.http_method}"
   uri = "${module.lambda.invoke_arn}"
 

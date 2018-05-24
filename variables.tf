@@ -57,14 +57,14 @@ variable "env_vars" {
   description = "A map that defines environment variables for the Lambda function."
 }
 
-variable "http_method" {
-  default = "ANY"
-  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
-}
-
 variable "path_part" {
   default = "{proxy+}"
   description = "The last path segment of this API resource."
+}
+
+variable "http_method" {
+  default = "ANY"
+  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
 }
 
 variable zone_id {
