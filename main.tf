@@ -21,27 +21,41 @@ resource "aws_api_gateway_rest_api" "default" {
 }
 
 resource "aws_api_gateway_resource" "default" {
+  count = "${length(var.methods)}"
+
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
   parent_id = "${aws_api_gateway_rest_api.default.root_resource_id}"
-  path_part = "${var.path_part == "" ? var.name : var.path_part}"
+  path_part = "${lookup(var.methods[count.index], "path_part")}"
 }
 
 resource "aws_api_gateway_method" "default" {
+  count = "${length(var.methods)}"
+
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
-  resource_id = "${aws_api_gateway_resource.default.id}"
-  http_method = "${var.http_method}"
+  resource_id = "${element(aws_api_gateway_resource.default.*.id, count.index)}"
+  http_method = "${lookup(var.methods[count.index], "http_method")}"
   authorization = "NONE"
+
+  depends_on = [
+    "aws_api_gateway_resource.default"
+  ]
 }
 
 resource "aws_api_gateway_integration" "default" {
+  count = "${length(var.methods)}"
+
   type = "AWS_PROXY"
   rest_api_id = "${aws_api_gateway_rest_api.default.id}"
-  resource_id = "${aws_api_gateway_resource.default.id}"
-  http_method = "${aws_api_gateway_method.default.http_method}"
+  resource_id = "${element(aws_api_gateway_resource.default.*.id, count.index)}"
+  http_method = "${lookup(var.methods[count.index], "http_method")}"
   uri = "${module.lambda.invoke_arn}"
 
   # AWS lambdas can only be invoked with the POST method
   integration_http_method = "POST"
+
+  depends_on = [
+    "aws_api_gateway_resource.default"
+  ]
 }
 
 resource "aws_api_gateway_deployment" "default" {

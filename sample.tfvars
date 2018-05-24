@@ -14,3 +14,18 @@ certificate_arn = "sample"
 env_vars = {
   SAMPLE = "sample"
 }
+
+methods = [
+  {
+    http_method = "GET"
+    path_part = "demos"
+  },
+  {
+    http_method = "GET"
+    path_part = "demos/{id}"
+  },
+  {
+    http_method = "POST"
+    path_part = "demos"
+  }
+]
