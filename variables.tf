@@ -65,12 +65,15 @@ variable "path_part" {
 variable "http_methods" {
   type = "list"
   default = [
-    "GET",
+    "HEAD",
+    "DELETE",
     "POST",
+    "GET",
+    "OPTIONS",
     "PUT",
-    "DELETE"
+    "PATCH",
   ]
-  description = "The HTTP Methods (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
+  description = "The HTTP Methods (HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH)"
 }
 
 variable zone_id {
