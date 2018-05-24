@@ -57,34 +57,15 @@ variable "env_vars" {
   description = "A map that defines environment variables for the Lambda function."
 }
 
-variable "methods" {
-  type = "list"
-  //default = [
-  //  {
-  //    http_method = "GET"
-  //    path_part = "demos"
-  //  },
-  //  {
-  //    http_method = "GET"
-  //    path_part = "demos/{id}"
-  //  },
-  //  {
-  //    http_method = "POST"
-  //    path_part = "demos"
-  //  }
-  //]
-  description = "A list that defines methods and paths for the Lambda function."
+variable "http_method" {
+  default = "ANY"
+  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
 }
 
-//variable "http_method" {
-//  default = "GET"
-//  description = "The HTTP Method (GET, POST, PUT, DELETE, HEAD, OPTIONS, ANY)"
-//}
-
-//variable "path_part" {
-//  default = ""
-//  description = "The last path segment of this API resource."
-//}
+variable "path_part" {
+  default = "{proxy+}"
+  description = "The last path segment of this API resource."
+}
 
 variable zone_id {
   //default = ""
