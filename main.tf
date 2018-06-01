@@ -89,11 +89,15 @@ resource "aws_api_gateway_base_path_mapping" "default" {
   domain_name = "${aws_api_gateway_domain_name.default.domain_name}"
 }
 
-module "domain" {
-  source = "git::https://github.com/nalbam/terraform-aws-route53-alias.git"
-
+resource "aws_route53_record" "default" {
   zone_id = "${var.zone_id}"
+
   name = "${var.domain_name}"
-  alias_name = "${aws_api_gateway_domain_name.default.cloudfront_domain_name}"
-  alias_zone_id = "${aws_api_gateway_domain_name.default.cloudfront_zone_id}"
+  type = "A"
+
+  alias {
+    name = "${aws_api_gateway_domain_name.default.domain_name}"
+    zone_id = "${aws_api_gateway_domain_name.default.cloudfront_zone_id}"
+    evaluate_target_health = "false"
+  }
 }
