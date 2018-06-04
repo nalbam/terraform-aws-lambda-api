@@ -26,6 +26,22 @@ resource "aws_api_gateway_resource" "default" {
   path_part = "${var.path_part}"
 }
 
+//resource "aws_cognito_user_pool" "default" {
+//  count = "${var.user_pool_name != "" ? 1 : 0}"
+//  name = "${var.user_pool_name}"
+//}
+
+//resource "aws_api_gateway_authorizer" "default" {
+//  count = "${var.user_pool_name != "" ? 1 : 0}"
+//
+//  name = "${var.name}-${var.stage}-cognito"
+//  type = "COGNITO_USER_POOLS"
+//  rest_api_id = "${aws_api_gateway_rest_api.default.id}"
+//  provider_arns = [
+//    "${aws_cognito_user_pool.default.arn}"
+//  ]
+//}
+
 resource "aws_api_gateway_method" "default" {
   count = "${length(var.http_methods)}"
 

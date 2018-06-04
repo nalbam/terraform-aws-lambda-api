@@ -87,3 +87,7 @@ variable domain_name {
 variable certificate_arn {
   //default = ""
 }
+
+variable "user_pool_name" {
+  default = ""
+}
