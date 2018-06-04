@@ -5,64 +5,65 @@ variable region {
 }
 
 variable name {
-  default = "demo"
   description = "Solution name, e.g. 'app' or 'demo'"
+  default = "demo"
 }
 
 variable stage {
-  default = "dev"
   description = "Stage, e.g. 'prod', 'dev', 'stage', or 'test'"
+  default = "dev"
 }
 
 variable description {
-  default = ""
   description = "Description of what your Lambda Function does."
+  default = ""
 }
 
 variable "runtime" {
-  //default = ""
   description = "See Runtimes for valid values."
+  //default = ""
 }
 
 variable "handler" {
-  //default = ""
   description = "The function entrypoint in your code."
+  //default = ""
 }
 
 variable "memory_size" {
-  default = "512"
   description = "Amount of memory in MB your Lambda Function can use at runtime."
+  default = "512"
 }
 
 variable "timeout" {
-  default = "5"
   description = "The amount of time your Lambda Function has to run in seconds."
+  default = "5"
 }
 
 variable "s3_bucket" {
-  //default = ""
   description = "The S3 bucket location containing the function's deployment package."
+  //default = ""
 }
 
 variable "s3_key" {
-  //default = ""
   description = "The S3 key of an object containing the function's deployment package."
+  //default = ""
 }
 
 variable "env_vars" {
+  description = "A map that defines environment variables for the Lambda function."
   type = "map"
   //default = {
   //  "PROFILE" = "dev"
   //}
-  description = "A map that defines environment variables for the Lambda function."
 }
 
 variable "path_part" {
-  default = "{proxy+}"
   description = "The last path segment of this API resource."
+  default = "{proxy+}"
 }
 
 variable "http_methods" {
+  description = "The HTTP Methods (HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH)"
   type = "list"
   default = [
     "HEAD",
@@ -73,7 +74,6 @@ variable "http_methods" {
     "PUT",
     "PATCH",
   ]
-  description = "The HTTP Methods (HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH)"
 }
 
 variable zone_id {
