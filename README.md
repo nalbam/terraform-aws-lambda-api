@@ -22,8 +22,8 @@ module "demo-api" {
   s3_key = "data/lambda-demo.zip"
 
   zone_id = "${module.domain.zone_id}"
-  domain_name = "demo-api.${var.domain}"
   certificate_arn = "${module.domain.certificate_arn}"
+  domain_name = "demo-api.${var.domain}"
 
   env_vars = {
     PROFILE = "${var.stage}"
