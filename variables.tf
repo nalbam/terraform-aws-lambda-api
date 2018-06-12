@@ -66,13 +66,7 @@ variable "http_methods" {
   description = "The HTTP Methods (HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH)"
   type = "list"
   default = [
-    "HEAD",
-    "DELETE",
-    "POST",
-    "GET",
-    "OPTIONS",
-    "PUT",
-    "PATCH",
+    "ANY"
   ]
 }
 
