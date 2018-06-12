@@ -44,6 +44,11 @@ variable "s3_bucket" {
   //default = ""
 }
 
+variable "s3_source" {
+  description = "The S3 source location containing the function's deployment package."
+  default = ""
+}
+
 variable "s3_key" {
   description = "The S3 key of an object containing the function's deployment package."
   //default = ""
