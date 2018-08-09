@@ -18,7 +18,7 @@ module "lambda" {
 }
 
 resource "aws_api_gateway_rest_api" "default" {
-  name = "${var.name}-${var.stage}"
+  name = "${var.stage}-${var.name}"
 }
 
 resource "aws_api_gateway_resource" "default" {
@@ -35,7 +35,7 @@ resource "aws_api_gateway_resource" "default" {
 //resource "aws_api_gateway_authorizer" "default" {
 //  count = "${var.user_pool_name != "" ? 1 : 0}"
 //
-//  name = "${var.name}-${var.stage}-cognito"
+//  name = "${var.stage}-${var.name}-cognito"
 //  type = "COGNITO_USER_POOLS"
 //  rest_api_id = "${aws_api_gateway_rest_api.default.id}"
 //  provider_arns = [
