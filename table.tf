@@ -5,17 +5,17 @@ resource "aws_dynamodb_table" "dynamodb" {
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "id"
-  range_key      = "phone_number"
+  # range_key      = "title"
 
   attribute {
     name = "id"
     type = "S"
   }
 
-  attribute {
-    name = "phone_number"
-    type = "S"
-  }
+  # attribute {
+  #   name = "title"
+  #   type = "S"
+  # }
 
 #   ttl {
 #     attribute_name = "TimeToExist"
