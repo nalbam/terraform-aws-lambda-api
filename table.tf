@@ -13,27 +13,7 @@ resource "aws_dynamodb_table" "dynamodb" {
   }
 
   attribute {
-    name = "event"
-    type = "S"
-  }
-
-  attribute {
-    name = "device_id"
-    type = "S"
-  }
-
-  attribute {
     name = "phone_number"
-    type = "S"
-  }
-
-  attribute {
-    name = "message"
-    type = "S"
-  }
-
-  attribute {
-    name = "created_at"
     type = "S"
   }
 
