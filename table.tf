@@ -1,7 +1,7 @@
 resource "aws_dynamodb_table" "dynamodb" {
   count = "${var.dynamodb != "" ? 1 : 0}"
 
-  name           = "${var.stage}-${var.name}"
+  name           = "${var.dynamodb}"
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "id"
