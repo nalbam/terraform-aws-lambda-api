@@ -1,7 +1,8 @@
 # terraform-aws-lambda-api
 
 ## usage
-```
+
+```hcl
 module "domain" {
   source = "git::https://github.com/nalbam/terraform-aws-route53.git"
   domain = "${var.domain}"

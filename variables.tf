@@ -90,3 +90,7 @@ variable certificate_arn {
 variable "user_pool_name" {
   default = ""
 }
+
+variable dynamodb {
+  default = ""
+}
