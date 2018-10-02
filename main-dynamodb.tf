@@ -1,3 +1,5 @@
+// dynamodb
+
 resource "aws_dynamodb_table" "dynamodb" {
   count = "${var.dynamodb != "" ? 1 : 0}"
 
