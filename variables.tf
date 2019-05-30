@@ -1,22 +1,23 @@
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {
+}
 
-variable region {
+variable "region" {
   default = "us-east-1"
 }
 
-variable name {
+variable "name" {
   description = "Solution name, e.g. 'app' or 'demo'"
-  default = "demo"
+  default     = "demo"
 }
 
-variable stage {
+variable "stage" {
   description = "Stage, e.g. 'prod', 'dev', 'stage', or 'test'"
-  default = "dev"
+  default     = "dev"
 }
 
-variable description {
+variable "description" {
   description = "Description of what your Lambda Function does."
-  default = ""
+  default     = ""
 }
 
 variable "runtime" {
@@ -31,12 +32,12 @@ variable "handler" {
 
 variable "memory_size" {
   description = "Amount of memory in MB your Lambda Function can use at runtime."
-  default = "512"
+  default     = "512"
 }
 
 variable "timeout" {
   description = "The amount of time your Lambda Function has to run in seconds."
-  default = "5"
+  default     = "5"
 }
 
 variable "s3_bucket" {
@@ -46,7 +47,7 @@ variable "s3_bucket" {
 
 variable "s3_source" {
   description = "The S3 source location containing the function's deployment package."
-  default = ""
+  default     = ""
 }
 
 variable "s3_key" {
@@ -56,7 +57,7 @@ variable "s3_key" {
 
 variable "env_vars" {
   description = "A map that defines environment variables for the Lambda function."
-  type = "map"
+  type        = map(string)
   //default = {
   //  "PROFILE" = "dev"
   //}
@@ -64,26 +65,26 @@ variable "env_vars" {
 
 variable "path_part" {
   description = "The last path segment of this API resource."
-  default = "{proxy+}"
+  default     = "{proxy+}"
 }
 
 variable "http_methods" {
   description = "The HTTP Methods (HEAD, DELETE, POST, GET, OPTIONS, PUT, PATCH)"
-  type = "list"
+  type        = list(string)
   default = [
-    "ANY"
+    "ANY",
   ]
 }
 
-variable zone_id {
+variable "zone_id" {
   //default = ""
 }
 
-variable domain_name {
+variable "domain_name" {
   //default = ""
 }
 
-variable certificate_arn {
+variable "certificate_arn" {
   //default = ""
 }
 
@@ -91,6 +92,6 @@ variable "user_pool_name" {
   default = ""
 }
 
-variable dynamodb {
+variable "dynamodb" {
   default = ""
 }
