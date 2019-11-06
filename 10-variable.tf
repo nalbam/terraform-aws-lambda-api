@@ -1,3 +1,5 @@
+# variable
+
 data "aws_caller_identity" "current" {
 }
 
@@ -77,21 +79,21 @@ variable "http_methods" {
 }
 
 variable "zone_id" {
-  //default = ""
+  default = ""
 }
 
 variable "domain_name" {
-  //default = ""
+  default = ""
 }
 
 variable "certificate_arn" {
-  //default = ""
-}
-
-variable "user_pool_name" {
   default = ""
 }
 
 variable "dynamodb" {
+  default = ""
+}
+
+variable "user_pool_name" {
   default = ""
 }

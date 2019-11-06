@@ -1,4 +1,4 @@
-// dynamodb
+# dynamodb
 
 resource "aws_dynamodb_table" "dynamodb" {
   count = var.dynamodb != "" ? 1 : 0
@@ -8,7 +8,7 @@ resource "aws_dynamodb_table" "dynamodb" {
   write_capacity = 10
   hash_key       = "id"
 
-  # range_key      = "title"
+  # range_key = "title"
 
   attribute {
     name = "id"

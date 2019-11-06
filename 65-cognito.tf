@@ -1,4 +1,4 @@
-// cognito
+# cognito
 
 resource "aws_cognito_user_pool" "default" {
   count = var.user_pool_name != "" ? 1 : 0
